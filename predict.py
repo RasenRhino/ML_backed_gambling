@@ -34,17 +34,32 @@ df['will_be_out'] = y<0
 df['four']= (y==4)
 df['six']= (y==6)
 forest = RandomForestClassifier(n_jobs=-1)
-X = df[['batting_team_e','bowling_team_e','batsman_e', 'non_striker_e', 'bowler_e', 'over', 'ball',
-        'inning']]
+# X = df[['batting_team_e','bowling_team_e','batsman_e', 'non_striker_e', 'bowler_e', 'over', 'ball',
+#         'inning']]
 # print(cross_val_score(forest, X, df.will_be_out, cv=10, scoring='roc_auc',n_jobs=-1).mean())
-x='Sunrisers Hyderabad'
-def predict_out(bat_team,bowl_team,season,batsman,nonstriker,bowler,over,bowl_no,inning):
-	train_data=df[(df['season']!=2008)&(df['season']!=2009)]
+# x='Sunrisers Hyderabad'
+# print(batenc.transform([x])[0])
+def predict_out(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inning_no):
+	train_data=df[(df['season']!=2008)]
 	X1=train_data[['batting_team_e','bowling_team_e','batsman_e', 'non_striker_e', 'bowler_e', 'over', 'ball',
-        'inning']]
-    y1=train_data['will_be_out']
-	prob=cross_val_score(forest, train_data, train_data.will_be_out, cv=10, scoring='roc_auc',n_jobs=-1).mean()
+	    'inning']]
+	y1=train_data['will_be_out']
+	prob=cross_val_score(forest, X1, train_data.will_be_out, cv=10, scoring='roc_auc',n_jobs=-1).mean()
 	X_train, X_test, y_train, y_test = train_test_split(X1, y1, test_size=0.2, random_state=40)
 	forest.fit(X_train,y_train)
-	forest.fit(X,df['will_be_out'])
+	inp={'batting_team_e':batenc.transform([bat_team])[0],
+		 'bowling_team_e':bowlenc.transform([bowl_team])[0],
+		 'batsman_e':player_encoder.transform([batsman])[0],
+		 'non_striker_e':player_encoder.transform([nonstriker])[0],
+		 'bowler_e':player_encoder.transform([bowler])[0],
+		 'over':over_no,
+		 'ball':ball_no,
+		 'inning':inning_no}
+	inp1=pd.Series(inp)
+	pr=forest.predict([inp1])
+	print(inp1)
+	print(prob)
+	print(pr)
+predict_out('Kolkata Knight Riders','Royal Challengers Bangalore','BB McCullum','SC Ganguly','P Kumar',1,3,1)
+
 
