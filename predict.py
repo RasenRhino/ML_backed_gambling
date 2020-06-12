@@ -34,12 +34,16 @@ df['will_be_out'] = y<0
 df['four']= (y==4)
 df['six']= (y==6)
 forest = RandomForestClassifier(n_jobs=-1)
+X1=train_data[['batting_team_e','bowling_team_e','batsman_e', 'non_striker_e', 'bowler_e', 'over', 'ball',
+	    'inning']]
+prob_out=cross_val_score(forest, X1, train_data.will_be_out, cv=10, scoring='roc_auc',n_jobs=-1).mean()
+prob_four=cross_val_score(forest, X1, train_data.four, cv=10, scoring='roc_auc',n_jobs=-1).mean()
+prob_six=cross_val_score(forest, X1, train_data.six, cv=10, scoring='roc_auc',n_jobs=-1).mean()
 def predict_out(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inning_no):
 	train_data=df[(df['season']!=2008)]
-	X1=train_data[['batting_team_e','bowling_team_e','batsman_e', 'non_striker_e', 'bowler_e', 'over', 'ball',
-	    'inning']]
+	
 	y1=train_data['will_be_out']
-	prob=cross_val_score(forest, X1, train_data.will_be_out, cv=10, scoring='roc_auc',n_jobs=-1).mean()
+	
 	X_train, X_test, y_train, y_test = train_test_split(X1, y1, test_size=0.2, random_state=40)
 	forest.fit(X_train,y_train)
 	inp={'batting_team_e':batenc.transform([bat_team])[0],
@@ -52,19 +56,18 @@ def predict_out(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inn
 		 'inning':inning_no}
 	inp1=pd.Series(inp)
 	pr=forest.predict([inp1])
-	prob*=100
+	prob_out*=100
 	if (False in pr):
-	 	a={'yes':1,'no':0,'chance':prob}
+	 	a={'yes':1,'no':0,'chance':prob_out}
 	 	return a
 	else :
-		a={'yes':0,'in':1,'chance':prob}
+		a={'yes':0,'no':1,'chance':prob_out}
 		return a
 def predict_four(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inning_no):
 	train_data=df[(df['season']!=2008)]
-	X1=train_data[['batting_team_e','bowling_team_e','batsman_e', 'non_striker_e', 'bowler_e', 'over', 'ball',
-	    'inning']]
+	
 	y1=train_data['four']
-	prob=cross_val_score(forest, X1, train_data.will_be_out, cv=10, scoring='roc_auc',n_jobs=-1).mean()
+
 	X_train, X_test, y_train, y_test = train_test_split(X1, y1, test_size=0.2, random_state=40)
 	forest.fit(X_train,y_train)
 	inp={'batting_team_e':batenc.transform([bat_team])[0],
@@ -77,18 +80,17 @@ def predict_four(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,in
 		 'inning':inning_no}
 	inp1=pd.Series(inp)
 	pr=forest.predict([inp1])
+	prob_four*=100
 	if (False in pr):
-	 	a={'yes':1,'no':0,'chance':prob}
+	 	a={'yes':1,'no':0,'chance':prob_four}
 	 	return a
 	else :
-		a={'yes':0,'in':1,'chance':prob}
+		a={'yes':0,'no':1,'chance':prob_four}
 		return a
 def predict_six(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inning_no):
 	train_data=df[(df['season']!=2008)]
-	X1=train_data[['batting_team_e','bowling_team_e','batsman_e', 'non_striker_e', 'bowler_e', 'over', 'ball',
-	    'inning']]
+	
 	y1=train_data['six']
-	prob=cross_val_score(forest, X1, train_data.will_be_out, cv=10, scoring='roc_auc',n_jobs=-1).mean()
 	X_train, X_test, y_train, y_test = train_test_split(X1, y1, test_size=0.2, random_state=40)
 	forest.fit(X_train,y_train)
 	inp={'batting_team_e':batenc.transform([bat_team])[0],
@@ -101,11 +103,12 @@ def predict_six(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inn
 		 'inning':inning_no}
 	inp1=pd.Series(inp)
 	pr=forest.predict([inp1])
+	prob_six*=100
 	if (False in pr):
-	 	a={'yes':1,'no':0,'chance':prob}
+	 	a={'yes':1,'no':0,'chance':prob_six}
 	 	return a
 	else :
-		a={'yes':0,'in':1,'chance':prob}
+		a={'yes':0,'in':1,'chance':prob_six}
 		return a
 # predict_out('Kolkata Knight Riders','Royal Challengers Bangalore','BB McCullum','SC Ganguly','P Kumar',1,3,1)
 
