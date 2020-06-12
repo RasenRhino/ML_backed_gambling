@@ -4,9 +4,20 @@
 	<title></title>
 </head>
 <body>
-<div id="toss_img1"><img src="tossplot_team1.png"><br>
+<div id="toss_img"><img src="tossplot_team1.png"><br>
 	<img src="tossplot_team2.png">
+haha
 </div>
-<button>toss decision stats</button>
+<button onclick="toss_show()">toss decision stats</button>
 </body>
+<script type="text/javascript">
+	function toss_show(){
+		 var x = document.getElementById("toss_img");
+		  if (x.style.display === "none") {
+		    x.style.display = "block";
+		  } else {
+		    x.style.display = "none";
+		  }
+	}
+</script>
 </html>
