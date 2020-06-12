@@ -34,13 +34,14 @@ df['will_be_out'] = y<0
 df['four']= (y==4)
 df['six']= (y==6)
 forest = RandomForestClassifier(n_jobs=-1)
+train_data=df[(df['season']!=2008)]
 X1=train_data[['batting_team_e','bowling_team_e','batsman_e', 'non_striker_e', 'bowler_e', 'over', 'ball',
 	    'inning']]
 prob_out=cross_val_score(forest, X1, train_data.will_be_out, cv=10, scoring='roc_auc',n_jobs=-1).mean()
 prob_four=cross_val_score(forest, X1, train_data.four, cv=10, scoring='roc_auc',n_jobs=-1).mean()
 prob_six=cross_val_score(forest, X1, train_data.six, cv=10, scoring='roc_auc',n_jobs=-1).mean()
 def predict_out(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inning_no):
-	train_data=df[(df['season']!=2008)]
+	
 	
 	y1=train_data['will_be_out']
 	
