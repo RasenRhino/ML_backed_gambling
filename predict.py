@@ -57,7 +57,7 @@ def predict_out(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inn
 		 'inning':inning_no}
 	inp1=pd.Series(inp)
 	pr=forest.predict([inp1])
-	prob_out*=100
+	# prob_out*=100
 	if (False in pr):
 	 	a={'yes':1,'no':0,'chance':prob_out}
 	 	return a
@@ -81,7 +81,7 @@ def predict_four(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,in
 		 'inning':inning_no}
 	inp1=pd.Series(inp)
 	pr=forest.predict([inp1])
-	prob_four*=100
+	# prob_four*=100
 	if (False in pr):
 	 	a={'yes':1,'no':0,'chance':prob_four}
 	 	return a
@@ -104,13 +104,13 @@ def predict_six(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inn
 		 'inning':inning_no}
 	inp1=pd.Series(inp)
 	pr=forest.predict([inp1])
-	prob_six*=100
+	# prob_six*=100
 	if (False in pr):
 	 	a={'yes':1,'no':0,'chance':prob_six}
 	 	return a
 	else :
 		a={'yes':0,'in':1,'chance':prob_six}
 		return a
-print(predict_out('Kolkata Knight Riders','Royal Challengers Bangalore','BB McCullum','SC Ganguly','P Kumar',1,3,1))
+# print(predict_out('Kolkata Knight Riders','Royal Challengers Bangalore','BB McCullum','SC Ganguly','P Kumar',1,3,1))
 
 
