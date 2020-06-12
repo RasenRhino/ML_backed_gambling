@@ -58,12 +58,10 @@ def predict_out(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inn
 	inp1=pd.Series(inp)
 	pr=forest.predict([inp1])
 	# prob_out*=100
-	if (False in pr):
-	 	a={'chance':prob_out}
-	 	return a
-	else :
-		a={'chance':prob_out}
-		return a
+	
+ 	a={'chance':prob_four}
+ 	return a
+	
 def predict_four(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inning_no):
 	train_data=df[(df['season']!=2008)]
 	
@@ -82,12 +80,11 @@ def predict_four(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,in
 	inp1=pd.Series(inp)
 	pr=forest.predict([inp1])
 	# prob_four*=100
-	if (False in pr):
-	 	a={'chance':prob_four}
-	 	return a
-	else :
-		a={'chance':prob_four}
-		return a
+	
+ 	a={'chance':prob_four}
+ 	return a
+	
+		
 def predict_six(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inning_no):
 	train_data=df[(df['season']!=2008)]
 	
@@ -105,12 +102,10 @@ def predict_six(bat_team,bowl_team,batsman,bowler,nonstriker,over_no,ball_no,inn
 	inp1=pd.Series(inp)
 	pr=forest.predict([inp1])
 	# prob_six*=100
-	if (False in pr):
-	 	a={'chance':prob_six}
-	 	return a
-	else :
-		a={'chance':prob_six}
-		return a
+
+ 	a={'chance':prob_four}
+ 	return a
+	
 # print(predict_out('Kolkata Knight Riders','Royal Challengers Bangalore','BB McCullum','SC Ganguly','P Kumar',1,3,1))
 
 
