@@ -1,6 +1,9 @@
 import numpy as np 
 import pandas as pd 
 dele=pd.read_csv("deliveries.csv")
-def teamname_list():
-	teams = set(dele.team1.unique()).union(set(dele.team2.unique()))
-	return list(teams)
+matches=pd.read_csv("matches.csv")
+df = dele.merge(matches, on='match_id', how='left')
+def player_list_batsman(team,season):
+	players = set(df.batsman.unique()).union(set(df.bowler.unique())).union(set(df.non_striker.unique()))
+	return list(players)
+
