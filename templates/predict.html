@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-start">
+        <div class="col md-6">
+            <h1>Prediction Form</h1>
+            <h5 class="text-muted">Batting Team - {{ team1 }}</h5>
+            <h5 class="text-muted">Bowling Team - {{ team2 }}</h5>
+            <h5 class="text-muted">Season - {{ season }}</h5>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.batsman.label(class="form-control-label") }}
+                    {{ form.batsman(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.batsman_ns.label(class="form-control-label") }}
+                    {{ form.batsman_ns(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.bowler.label(class="form-control-label") }}
+                    {{ form.bowler(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.over.label(class="form-control-label") }}
+                    {{ form.over(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.ball.label(class="form-control-label") }}
+                    {{ form.ball(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.inning.label(class="form-control-label") }}
+                    {{ form.inning(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.submit(class='btn btn-primary') }}
+                </div>
+            <form>
+        </div>
+    </div>
+    {% if predictions %}
+    <div class="row">
+        <h1>Predictions</h1>
+        <table class="table">
+             <thead>
+                <tr>
+                  <th scope="col">Type<th>
+                  <th scope="col">Yes</th>
+                  <th scope="col">No</th>
+                  <th scope="col">Possibility</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr> -->
+                <!--   <th scope="row">Four</th> -->
+                <!--   <td>{{ predictions.four['yes'] }}</td> -->
+                <!--   <td>{{ predictions.four['no'] }}</td> -->
+                <!--   <td>{{ predictions.four['chance'] }}</td> -->
+                <!-- </tr> -->
+                <!-- <tr> -->
+                <!--   <th scope="row">Six</th> -->
+                <!--   <td>{{ predictions.six['yes'] }}</td> -->
+                <!--   <td>{{ predictions.six['no'] }}</td> -->
+                <!--   <td>{{ predictions.six['chance'] }}</td> -->
+                <!-- </tr> -->
+                <tr>
+                  <td>Out</td>
+                  <td>{{ predictions.out['yes'] }}</td>
+                  <td>{{ predictions.out['no'] }}</td>
+                  <td>{{ predictions.out['chance'] }}</td>
+                </tr>
+              </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}
+

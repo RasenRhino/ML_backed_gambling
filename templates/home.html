@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-start">
+        <div class="col md-6">
+            <form method="POST" action="{{ url_for('home') }}">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.team1.label(class="form-control-label") }}
+                    {{ form.team1(class="form-control") }}
+                </div>
+                <div>
+                    {{ form.team2.label(class="form-control-label") }}
+                    {{ form.team2(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.season.label(class="form-control-label") }}
+                    {{ form.season(class="form-control") }}
+                    {% if form.season.errors %}
+                        {% for error in errors %}
+                            <span class="invaild-feedback">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.submit(class='btn btn-primary') }}
+                </div>
+            <form>
+        </div>
+    <div>
+{% endblock %}
