@@ -13,5 +13,6 @@ To run the flask app run
      python3 app.py
 and go to `localhost:5050` as the webapp is running on port 5050. The prediction model had a ROC-AUC score of 60.54
 
-For wicket prediction in current over , run the project in jupyter notebook and open `predict.ipynb` and enter your inputs in the function. Will soon be added to the flask app.
+For wicket prediction in current over , run the project in jupyter notebook and open `predict.ipynb` in the `Wicket_Prediction` folder and enter your inputs in the function. 
+Will soon be added to the flask app.
 
