@@ -1,7 +1,7 @@
 ## ML Backed Betting
 To install dependencies 
 
-    pip3 install -r requitements.txt
+    pip3 install -r requirements.txt
     
 At present we have 2 models for wicket prediction
 
@@ -18,7 +18,7 @@ Download the files from the WicketBetting folder
 
 To install dependencies, run the following command
 
-pip install -r requitements.txt
+pip install -r requirements.txt
 
 Then, run the following command: python predict.py
 
