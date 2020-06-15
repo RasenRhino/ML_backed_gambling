@@ -33,39 +33,10 @@ def predict_over(x_1,x_2, x_3, x_4, over):
     result_prob_4_mlp = loaded_model.predict_proba([x_4])
     #print("For +4 over", result_prob_4)    
 
-    #Log reg
-    filename = 'finalized_model_logreg_1.sav'        
-    # load the model from disk
-    #print("Using Log reg")
-    loaded_model = pickle.load(open(filename, 'rb'))
-    result_prob_1_lr = loaded_model.predict_proba([x_1])
-    #print("For +1 over", result_prob_1)    
-
-    filename = 'finalized_model_logreg_2.sav'        
-    # load the model from disk
-    #print("Using log reg")
-    loaded_model = pickle.load(open(filename, 'rb'))
-    result_prob_2_lr = loaded_model.predict_proba([x_2])
-    #print("For +2 over", result_prob_2)    
-
-    filename = 'finalized_model_logreg_3.sav'            
-    # load the model from disk
-    #print("Using log reg")
-    loaded_model = pickle.load(open(filename, 'rb'))
-    result_prob_3_lr = loaded_model.predict_proba([x_3])
-    #print("For +3 over", result_prob_3)    
-
-    filename = 'finalized_model_logreg_4.sav'        
-    # load the model from disk
-    #print("Using log reg")
-    loaded_model = pickle.load(open(filename, 'rb'))
-    result_prob_4_lr = loaded_model.predict_proba([x_4])
-    #print("For +4 over", result_prob_4)    
-    
-    print("Probability of a wicket in ", over+1," over is: ", round(max(result_prob_1_lr[0][1], result_prob_1_mlp[0][1]),2))
-    print("Probability of a wicket in ", over+2," over is: ", round(max(result_prob_2_lr[0][1], result_prob_2_mlp[0][1]),2))
-    print("Probability of a wicket in ", over+3," over is: ", round(max(result_prob_3_lr[0][1], result_prob_3_mlp[0][1]),2))
-    print("Probability of a wicket in ", over+4," over is: ", round(max(result_prob_4_lr[0][1], result_prob_4_mlp[0][1]),2))
+    print("Probability of a wicket in ", over+1," over is: ", round(result_prob_1_mlp[0][1],2))
+    print("Probability of a wicket in ", over+2," over is: ", round(result_prob_2_mlp[0][1],2))
+    print("Probability of a wicket in ", over+3," over is: ", round(result_prob_3_mlp[0][1],2))
+    print("Probability of a wicket in ", over+4," over is: ", round(result_prob_4_mlp[0][1],2))
     
 def bowler_prob_in_a_over(bowler, over):
     
@@ -136,3 +107,13 @@ def run(bowler, batsman, non_striker, over, tot_wicket_till_now, over_last_wicke
     x_4= [p1*p54,p24,p34, p44]
     
     predict_over(x_1,x_2, x_3, x_4,over)
+
+bowler='R Bhatia'
+batsman='TS Mills'
+non_striker='Yuvraj Singh'
+over=5
+tot_wicket_till_now=1
+over_last_wicket=1
+
+run(bowler, batsman, non_striker, over, tot_wicket_till_now, over_last_wicket)
+
