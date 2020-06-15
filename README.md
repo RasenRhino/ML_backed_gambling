@@ -6,7 +6,7 @@ To install dependencies
 At present we have 2 models for wicket prediction
 
  - Ball by ball wicket prediction running in flask app
- - Wicket prediction in current over
+ - Wicket prediction in +1, +2, +3, +4 over, given the current over
 
 To run the flask app run
 
