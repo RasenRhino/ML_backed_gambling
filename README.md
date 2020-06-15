@@ -18,9 +18,9 @@ Download the files from the WicketBetting folder
 
 To install dependencies, run the following command
 
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
-Then, run the following command: python predict.py
+Then, run the following command: python3 predict.py
 
 Input for this is: 
 bowler='R Bhatia'
