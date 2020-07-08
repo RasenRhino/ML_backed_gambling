@@ -64,8 +64,8 @@ def predict(season, team1, team2):
     # TODO: validations
     if form.is_submitted():
         predictions = {
-            'four': predict_four(team1, team2, form.batsman.data, form.bowler.data, form.batsman_ns.data, form.over.data, form.ball.data, form.inning.data),   
-            'six': predict_six(team1, team2, form.batsman.data, form.bowler.data, form.batsman_ns.data, form.over.data, form.ball.data, form.inning.data),   
+            # 'four': predict_four(team1, team2, form.batsman.data, form.bowler.data, form.batsman_ns.data, form.over.data, form.ball.data, form.inning.data),   
+            # 'six': predict_six(team1, team2, form.batsman.data, form.bowler.data, form.batsman_ns.data, form.over.data, form.ball.data, form.inning.data),   
             'out': predict_out(team1, team2, form.batsman.data, form.bowler.data, form.batsman_ns.data, form.over.data, form.ball.data, form.inning.data),   
         }
         return render_template('predict.html', 
@@ -75,5 +75,5 @@ def predict(season, team1, team2):
 # start server
 if __name__ == '__main__':
     print(teamname_list())
-    app.run(host='0.0.0.0', port=5050, debug=True)
+    app.run(host='0.0.0.0', port=5050, debug=False)
 

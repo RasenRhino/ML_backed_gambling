@@ -40,39 +40,32 @@
         </div>
     </div>
     {% if predictions %}
+<hr>
     <div class="row">
         <h1>Predictions</h1>
-        <table class="table">
-             <thead>
-                <tr>
-                  <th scope="col">Type<th>
-                  <th scope="col">Yes</th>
-                  <th scope="col">No</th>
-                  <th scope="col">Possibility</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr> -->
-                <!--   <th scope="row">Four</th> -->
-                <!--   <td>{{ predictions.four['yes'] }}</td> -->
-                <!--   <td>{{ predictions.four['no'] }}</td> -->
-                <!--   <td>{{ predictions.four['chance'] }}</td> -->
-                <!-- </tr> -->
-                <!-- <tr> -->
-                <!--   <th scope="row">Six</th> -->
-                <!--   <td>{{ predictions.six['yes'] }}</td> -->
-                <!--   <td>{{ predictions.six['no'] }}</td> -->
-                <!--   <td>{{ predictions.six['chance'] }}</td> -->
-                <!-- </tr> -->
-                <tr>
-                  <td>Out</td>
-                  <td>{{ predictions.out['yes'] }}</td>
-                  <td>{{ predictions.out['no'] }}</td>
-                  <td>{{ predictions.out['chance'] }}</td>
-                </tr>
-              </tbody>
-        </table>
-    </div>
+</div>
+
+<div>
+<h2>
+	{% if predictions.out['yes'] %}
+		Out
+	{% else %} 
+		Not Out
+	{% endif %}
+</h2>
+<h6 class="text-muted">
+	Accuracy - {{predictions.out['chance']}}
+</h6>
+</div>
+<hr>
+
+<div>
+<hr>
+predictions_raw
+{{predictions}}
+out {{predictions.out['yes']}}, not out{{predictions.out['no']}}
+</div>
+
     {% endif %}
 {% endblock %}
 
